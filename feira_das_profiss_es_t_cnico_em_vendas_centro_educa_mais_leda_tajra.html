@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Técnico em Vendas | Feira das Profissões — Centro Educa Mais Leda Tajra</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Poppins & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        leda: {
+                            blue: '#0B5ED7',
+                            dark: '#003B8E',
+                            royal: '#0A66C2',
+                            light: '#EFF6FF',
+                            gold: '#D4AF37',
+                            goldLight: '#FDE047'
+                        }
+                    },
+                    animation: {
+                        'float': 'float 4s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-12px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos personalizados para animações suaves e efeitos visuais */
+        body {
+            overflow-x: hidden;
+            background-color: #FFFFFF;
+            color: #0F172A;
+        }
+
+        /* Tela de abertura (Splash Screen) */
+        #splash-screen {
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out, visibility 0.8s;
+        }
+        #splash-screen.hidden-splash {
+            opacity: 0;
+            transform: scale(1.06);
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* Animação de surgimento ao rolar a página */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: all 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Gradientes e brilhos personalizados */
+        .hero-gradient {
+            background: radial-gradient(circle at 80% 20%, #1D75F5 0%, #0B5ED7 45%, #003580 100%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(11, 94, 215, 0.14);
+        }
+
+        .gold-ring {
+            box-shadow: 0 0 0 3px #D4AF37, 0 10px 25px rgba(0, 59, 142, 0.35);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-leda-blue selection:text-white">
+
+    <!-- ===================================================================== -->
+    <!-- 1. TELA DE ENTRADA (SPLASH SCREEN COM A LOGO DA ESCOLA)               -->
+    <!-- ===================================================================== -->
+    <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-br from-[#003580] via-[#0B5ED7] to-[#002861] text-white px-6 text-center">
+        <!-- Círculos decorativos de fundo -->
+        <div class="absolute top-10 left-10 w-64 h-64 bg-white/5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-80 h-80 bg-yellow-400/10 rounded-full blur-3xl"></div>
+
+        <div class="relative z-10 flex flex-col items-center max-w-lg">
+            <!-- Logo de Entrada -->
+            <div class="w-40 h-40 sm:w-48 sm:h-48 rounded-full overflow-hidden gold-ring mb-6 bg-[#0A66C2] flex items-center justify-center animate-float">
+                <img src="image_60f8a9.png" 
+                     alt="Logo Centro Educa Mais Leda Tajra" 
+                     class="w-full h-full object-cover"
+                     onerror="this.src='https://placehold.co/300x300/0B5ED7/FFFFFF?text=EDUCA+MAIS+LEDA+TAJRA'">
+            </div>
+
+            <span class="inline-block px-4 py-1.5 rounded-full bg-white/15 border border-white/25 text-xs sm:text-sm font-semibold tracking-wider uppercase text-yellow-300 mb-3">
+                Feira das Profissões
+            </span>
+
+            <h1 class="font-display text-2xl sm:text-4xl font-extrabold tracking-tight leading-tight mb-2">
+                CENTRO EDUCA MAIS<br>
+                <span class="text-yellow-300">LEDA TAJRA</span>
+            </h1>
+            <p class="text-blue-100 text-sm sm:text-base mb-8">
+                Santa Helena - MA • Apresentação Especial: <strong>Técnico em Vendas</strong>
+            </p>
+
+            <!-- Barra de carregamento sutil + Botão Entrar -->
+            <div class="w-56 h-1.5 bg-white/20 rounded-full overflow-hidden mb-5">
+                <div id="splash-progress" class="h-full bg-yellow-400 rounded-full transition-all duration-1000 ease-out" style="width: 15%;"></div>
+            </div>
+
+            <button onclick="closeSplash()" class="px-7 py-3 rounded-full bg-white text-leda-dark font-display font-bold text-sm sm:text-base shadow-xl hover:bg-yellow-300 hover:text-slate-900 transition-all transform hover:scale-105 cursor-pointer flex items-center gap-2">
+                <span>Iniciar Apresentação</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- 2. CABEÇALHO FIXO COM LOGO NO CANTO SUPERIOR ESQUERDO                  -->
+    <!-- ===================================================================== -->
+    <header class="fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-blue-100 shadow-sm transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            
+            <!-- LOGO FIXA NO CANTO ESQUERDO + NOME DA ESCOLA -->
+            <a href="#inicio" class="flex items-center gap-3 group shrink-0">
+                <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden border-2 border-leda-gold shadow-md bg-[#0A66C2] shrink-0 group-hover:scale-105 transition-transform">
+                    <img src="image_60f8a9.png" 
+                         alt="Brasão Centro Educa Mais Leda Tajra" 
+                         class="w-full h-full object-cover"
+                         onerror="this.src='https://placehold.co/150x150/0B5ED7/FFFFFF?text=LEDA+TAJRA'">
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display font-extrabold text-xs sm:text-sm md:text-base text-leda-dark leading-tight tracking-tight">
+                        CENTRO EDUCA MAIS LEDA TAJRA
+                    </span>
+                    <span class="text-[11px] sm:text-xs font-semibold text-leda-blue flex items-center gap-1.5">
+                        <span class="w-2 h-2 rounded-full bg-leda-gold inline-block"></span>
+                        Feira das Profissões • Técnico em Vendas
+                    </span>
+                </div>
+            </a>
+
+            <!-- MENU DE NAVEGAÇÃO DESKTOP -->
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-700">
+                <a href="#por-que-escolher" class="hover:text-leda-blue transition-colors">Por que Escolher?</a>
+                <a href="#o-que-faz" class="hover:text-leda-blue transition-colors">O que Faz?</a>
+                <a href="#importancia" class="hover:text-leda-blue transition-colors">Importância</a>
+                <a href="#areas-atuacao" class="hover:text-leda-blue transition-colors">Onde Trabalhar</a>
+                <a href="#quiz-vendas" class="px-4 py-2.5 rounded-full bg-leda-blue text-white hover:bg-leda-dark transition-all shadow-md shadow-blue-500/20 flex items-center gap-2">
+                    <i class="fa-solid fa-bolt text-yellow-300"></i>
+                    <span>Teste seu Perfil</span>
+                </a>
+            </nav>
+
+            <!-- BOTÃO MENU MOBILE / CONTROLE DE SLIDES -->
+            <div class="flex items-center gap-2 lg:hidden">
+                <a href="#quiz-vendas" class="px-3.5 py-2 rounded-full bg-leda-blue text-white text-xs font-bold shadow">
+                    Quiz Perfil
+                </a>
+                <button id="mobile-menu-btn" aria-label="Abrir menu" class="p-2.5 rounded-xl bg-blue-50 text-leda-blue hover:bg-blue-100">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- MENU DROPDOWN MOBILE -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-blue-100 px-6 py-4 space-y-3 shadow-lg">
+            <a href="#por-que-escolher" class="block py-2 text-sm font-semibold text-slate-700 hover:text-leda-blue">1. Por que escolher o curso?</a>
+            <a href="#o-que-faz" class="block py-2 text-sm font-semibold text-slate-700 hover:text-leda-blue">2. O que faz um Técnico em Vendas?</a>
+            <a href="#importancia" class="block py-2 text-sm font-semibold text-slate-700 hover:text-leda-blue">3. Por que é tão importante?</a>
+            <a href="#areas-atuacao" class="block py-2 text-sm font-semibold text-slate-700 hover:text-leda-blue">4. Áreas de Atuação</a>
+            <a href="#quiz-vendas" class="block py-2 text-sm font-bold text-leda-blue">5. Quiz Interativo de Perfil</a>
+        </div>
+    </header>
+
+    <!-- ===================================================================== -->
+    <!-- 3. SEÇÃO HERO (CAPA PRINCIPAL DA APRESENTAÇÃO)                        -->
+    <!-- ===================================================================== -->
+    <section id="inicio" class="hero-gradient pt-32 pb-20 lg:pt-40 lg:pb-28 text-white relative overflow-hidden">
+        <!-- Padrão geométrico sutil no fundo -->
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1.5px, transparent 1.5px); background-size: 28px 28px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Texto Principal -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-xs sm:text-sm font-semibold text-yellow-300">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <span>CENTRO EDUCA MAIS LEDA TAJRA • FEIRA DAS PROFISSÕES</span>
+                    </div>
+
+                    <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight">
+                        Técnico em <span class="text-yellow-300 underline decoration-white/30 underline-offset-8">Vendas</span>:
+                        <span class="block text-2xl sm:text-3xl lg:text-4xl font-bold text-blue-100 mt-3">
+                            A Arte de Conectar Pessoas, Estratégias e Negócios!
+                        </span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-blue-100 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Muito além de vender produtos: descubra como essa formação prepara você para liderar negociações, dominar o mercado digital e conquistar independência financeira logo após o Ensino Médio.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#por-que-escolher" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-white text-leda-dark font-display font-bold text-base shadow-xl hover:bg-yellow-300 hover:text-slate-900 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2">
+                            <span>Explorar o Curso</span>
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </a>
+                        <a href="#quiz-vendas" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-leda-dark/60 hover:bg-leda-dark text-white border border-white/30 font-display font-bold text-base backdrop-blur-md transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-sparkles text-yellow-300"></i>
+                            <span>Qual seu perfil em vendas?</span>
+                        </a>
+                    </div>
+
+                    <!-- Mini Destaques Rápidos -->
+                    <div class="grid grid-cols-3 gap-4 pt-6 border-t border-white/15 max-w-xl mx-auto lg:mx-0">
+                        <div>
+                            <div class="font-display text-2xl sm:text-3xl font-extrabold text-yellow-300">100%</div>
+                            <div class="text-xs text-blue-100">Das empresas precisam</div>
+                        </div>
+                        <div>
+                            <div class="font-display text-2xl sm:text-3xl font-extrabold text-white">Rápida</div>
+                            <div class="text-xs text-blue-100">Inserção no mercado</div>
+                        </div>
+                        <div>
+                            <div class="font-display text-2xl sm:text-3xl font-extrabold text-yellow-300">Digital</div>
+                            <div class="text-xs text-blue-100">+ Atendimento humano</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ilustração Vetorial Exclusiva (Hero - Negócios, Gráfico de Crescimento & Conexão) -->
+                <div class="lg:col-span-5 flex justify-center">
+                    <div class="relative w-full max-w-md animate-float">
+                        <div class="absolute -inset-4 bg-white/10 rounded-3xl blur-2xl"></div>
+                        <div class="relative bg-white/10 backdrop-blur-md border border-white/25 rounded-3xl p-6 shadow-2xl">
+                            <svg viewBox="0 0 420 360" class="w-full h-auto drop-shadow-lg" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Fundo do Painel -->
+                                <rect x="20" y="25" width="380" height="290" rx="24" fill="#FFFFFF"/>
+                                <rect x="20" y="25" width="380" height="44" rx="24" fill="#EFF6FF"/>
+                                <circle cx="48" cy="47" r="6" fill="#0B5ED7"/>
+                                <circle cx="68" cy="47" r="6" fill="#60A5FA"/>
+                                <circle cx="88" cy="47" r="6" fill="#D4AF37"/>
+                                
+                                <!-- Barras de Crescimento de Vendas -->
+                                <rect x="55" y="210" width="36" height="75" rx="8" fill="#BFDBFE"/>
+                                <rect x="108" y="175" width="36" height="110" rx="8" fill="#60A5FA"/>
+                                <rect x="161" y="135" width="36" height="150" rx="8" fill="#0B5ED7"/>
+                                <rect x="214" y="95" width="36" height="190" rx="8" fill="#003B8E"/>
+                                
+                                <!-- Linha de Tendência Dourada -->
+                                <path d="M65 195 L125 160 L178 120 L235 80" stroke="#D4AF37" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="235" cy="80" r="9" fill="#FACC15" stroke="#003B8E" stroke-width="3"/>
+
+                                <!-- Cartão Flutuante de Sucesso / Meta Batida -->
+                                <rect x="245" y="145" width="135" height="90" rx="16" fill="#0B5ED7"/>
+                                <circle cx="277" cy="178" r="16" fill="#FACC15"/>
+                                <path d="M270 178L275 183L285 173" stroke="#003B8E" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <rect x="302" y="168" width="62" height="8" rx="4" fill="#FFFFFF"/>
+                                <rect x="302" y="183" width="44" height="6" rx="3" fill="#93C5FD"/>
+                                <rect x="262" y="208" width="100" height="10" rx="5" fill="#1E40AF"/>
+
+                                <!-- Selo Inferior -->
+                                <rect x="45" y="302" width="330" height="36" rx="18" fill="#FACC15"/>
+                                <text x="210" y="325" text-anchor="middle" fill="#003580" font-family="Poppins, sans-serif" font-weight="800" font-size="14">
+                                    CARREIRA EM ALTA • TÉCNICO EM VENDAS
+                                </text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 4. PERGUNTA 1: POR QUE ESCOLHER O CURSO TÉCNICO EM VENDAS?            -->
+    <!-- ===================================================================== -->
+    <section id="por-que-escolher" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center reveal">
+                
+                <!-- Ilustração Vetorial (Lado Esquerdo) -->
+                <div class="lg:col-span-5 order-2 lg:order-1">
+                    <div class="bg-gradient-to-br from-blue-50 to-white border-2 border-blue-100 rounded-3xl p-6 sm:p-8 shadow-xl relative">
+                        <span class="absolute -top-4 left-6 px-4 py-1 rounded-full bg-leda-blue text-white text-xs font-bold uppercase tracking-wider shadow">
+                            Oportunidade Real
+                        </span>
+                        <svg viewBox="0 0 400 340" class="w-full h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Fundo Circular -->
+                            <circle cx="200" cy="175" r="135" fill="#DBEAFE"/>
+                            <circle cx="200" cy="175" r="105" fill="#EFF6FF"/>
+                            
+                            <!-- Alvo de Carreira -->
+                            <circle cx="200" cy="165" r="72" fill="#FFFFFF" stroke="#0B5ED7" stroke-width="8"/>
+                            <circle cx="200" cy="165" r="44" fill="#FFFFFF" stroke="#3B82F6" stroke-width="8"/>
+                            <circle cx="200" cy="165" r="18" fill="#0B5ED7"/>
+                            
+                            <!-- Flecha Dourada no Centro do Alvo -->
+                            <path d="M295 75L204 161" stroke="#D4AF37" stroke-width="7" stroke-linecap="round"/>
+                            <polygon points="200,165 218,162 206,150" fill="#003B8E"/>
+                            <path d="M282 75H298V91" stroke="#D4AF37" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+                            <!-- Cards de Vantagens Ilustrados -->
+                            <rect x="35" y="245" width="145" height="58" rx="14" fill="#0B5ED7"/>
+                            <text x="107" y="271" text-anchor="middle" fill="#FFFFFF" font-family="Poppins, sans-serif" font-weight="700" font-size="13">1º Emprego</text>
+                            <text x="107" y="289" text-anchor="middle" fill="#BFDBFE" font-family="Inter, sans-serif" font-size="11">Alta Empregabilidade</text>
+
+                            <rect x="220" y="245" width="145" height="58" rx="14" fill="#003B8E"/>
+                            <text x="292" y="271" text-anchor="middle" fill="#FACC15" font-family="Poppins, sans-serif" font-weight="700" font-size="13">Empreender</text>
+                            <text x="292" y="289" text-anchor="middle" fill="#DBEAFE" font-family="Inter, sans-serif" font-size="11">Seu Próprio Negócio</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Conteúdo Explicativo (Lado Direito) -->
+                <div class="lg:col-span-7 order-1 lg:order-2 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-leda-blue font-bold text-xs uppercase tracking-wider">
+                        <i class="fa-solid fa-star text-leda-gold"></i>
+                        <span>01. Escolha Inteligente</span>
+                    </div>
+
+                    <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+                        Por que escolher o curso <span class="text-leda-blue">Técnico em Vendas</span>?
+                    </h2>
+
+                    <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+                        Escolher o curso Técnico em Vendas no <strong>Centro Educa Mais Leda Tajra</strong> é abrir portas imediatas para o mercado de trabalho. Enquanto muitas profissões sofrem com falta de vagas, bons profissionais de vendas são disputados todos os dias!
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <!-- Motivo 1 -->
+                        <div class="p-5 rounded-2xl bg-slate-50 border border-blue-100 hover:border-leda-blue hover:shadow-md transition-all">
+                            <div class="w-11 h-11 rounded-xl bg-leda-blue text-white flex items-center justify-center mb-3 text-lg">
+                                <i class="fa-solid fa-briefcase"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-slate-900 text-lg mb-1">Empregabilidade Imediata</h3>
+                            <p class="text-sm text-slate-600">Toda empresa — de lojas locais a multinacionais — precisa de profissionais qualificados para vender.</p>
+                        </div>
+
+                        <!-- Motivo 2 -->
+                        <div class="p-5 rounded-2xl bg-slate-50 border border-blue-100 hover:border-leda-blue hover:shadow-md transition-all">
+                            <div class="w-11 h-11 rounded-xl bg-leda-blue text-white flex items-center justify-center mb-3 text-lg">
+                                <i class="fa-solid fa-comments"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-slate-900 text-lg mb-1">Comunicação e Persuasão</h3>
+                            <p class="text-sm text-slate-600">Você aprende a falar bem em público, negociar com confiança e influenciar pessoas positivamente.</p>
+                        </div>
+
+                        <!-- Motivo 3 -->
+                        <div class="p-5 rounded-2xl bg-slate-50 border border-blue-100 hover:border-leda-blue hover:shadow-md transition-all">
+                            <div class="w-11 h-11 rounded-xl bg-leda-blue text-white flex items-center justify-center mb-3 text-lg">
+                                <i class="fa-solid fa-sack-dollar"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-slate-900 text-lg mb-1">Ganhos Sem Teto</h3>
+                            <p class="text-sm text-slate-600">Além do salário fixo, comissões e bônus recompensam diretamente o seu esforço e talento.</p>
+                        </div>
+
+                        <!-- Motivo 4 -->
+                        <div class="p-5 rounded-2xl bg-slate-50 border border-blue-100 hover:border-leda-blue hover:shadow-md transition-all">
+                            <div class="w-11 h-11 rounded-xl bg-leda-blue text-white flex items-center justify-center mb-3 text-lg">
+                                <i class="fa-solid fa-rocket"></i>
+                            </div>
+                            <h3 class="font-display font-bold text-slate-900 text-lg mb-1">Base para Empreender</h3>
+                            <p class="text-sm text-slate-600">Sonha em abrir sua própria loja ou marca digital? Saber vender é o pilar número 1 de qualquer negócio.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 5. PERGUNTA 2: O QUE FAZ UM TÉCNICO EM VENDAS?                        -->
+    <!-- ===================================================================== -->
+    <section id="o-que-faz" class="py-20 lg:py-28 bg-gradient-to-b from-blue-50/70 to-white border-y border-blue-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- Cabeçalho da Seção -->
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-leda-blue/10 text-leda-blue font-bold text-xs uppercase tracking-wider mb-3">
+                    <i class="fa-solid fa-gears"></i>
+                    <span>02. Na Prática</span>
+                </div>
+                <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 mb-4">
+                    O que faz um <span class="text-leda-blue">Técnico em Vendas</span>?
+                </h2>
+                <p class="text-slate-600 text-base sm:text-lg">
+                    Esqueça a ideia antiga de vendedor que apenas entrega um produto no balcão. O Técnico em Vendas moderno é um <strong>consultor estratégico</strong> que domina tecnologia, psicologia do consumidor e marketing.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center reveal">
+                
+                <!-- Lista Interativa de Atividades (7 colunas) -->
+                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-blue-100 hover:shadow-lg hover:-translate-y-1 transition-all">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-10 h-10 rounded-xl bg-blue-100 text-leda-blue flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-handshake"></i>
+                            </span>
+                            <h3 class="font-display font-bold text-slate-900">Negociação Consultiva</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Identifica o problema real do cliente, apresenta a melhor solução e fecha acordos vantajosos para ambos os lados.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-blue-100 hover:shadow-lg hover:-translate-y-1 transition-all">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-10 h-10 rounded-xl bg-blue-100 text-leda-blue flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                            </span>
+                            <h3 class="font-display font-bold text-slate-900">Vendas Digitais & Social Selling</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Gerencia lojas virtuais, catálogos no WhatsApp Business, Instagram e estratégias de e-commerce para vender 24h por dia.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-blue-100 hover:shadow-lg hover:-translate-y-1 transition-all">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-10 h-10 rounded-xl bg-blue-100 text-leda-blue flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-chart-pie"></i>
+                            </span>
+                            <h3 class="font-display font-bold text-slate-900">Análise de Mercado e Metas</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Estuda a concorrência, define preços competitivos, acompanha indicadores de desempenho e planeja campanhas promocionais.
+                        </p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-blue-100 hover:shadow-lg hover:-translate-y-1 transition-all">
+                        <div class="flex items-center gap-3 mb-3">
+                            <span class="w-10 h-10 rounded-xl bg-blue-100 text-leda-blue flex items-center justify-center font-bold">
+                                <i class="fa-solid fa-heart-circle-check"></i>
+                            </span>
+                            <h3 class="font-display font-bold text-slate-900">Pós-Venda e Fidelização</h3>
+                        </div>
+                        <p class="text-sm text-slate-600 leading-relaxed">
+                            Usa ferramentas de CRM para encantar o cliente após a compra, transformando compradores ocasionais em fãs da marca.
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Ilustração Vetorial do Dia a Dia do Técnico em Vendas (5 colunas) -->
+                <div class="lg:col-span-5">
+                    <div class="bg-leda-dark rounded-3xl p-6 sm:p-8 text-white shadow-2xl relative overflow-hidden">
+                        <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-leda-blue rounded-full opacity-50"></div>
+                        
+                        <h4 class="font-display font-bold text-lg text-yellow-300 mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-laptop-code"></i>
+                            <span>Ecossistema do Profissional</span>
+                        </h4>
+                        <p class="text-xs text-blue-200 mb-5">Tecnologia + Psicologia + Estratégia Comercial</p>
+
+                        <svg viewBox="0 0 380 300" class="w-full h-auto relative z-10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Tela de Smartphone / E-commerce Central -->
+                            <rect x="115" y="20" width="150" height="260" rx="24" fill="#FFFFFF" stroke="#60A5FA" stroke-width="5"/>
+                            <rect x="165" y="32" width="50" height="6" rx="3" fill="#CBD5E1"/>
+                            
+                            <!-- Conteúdo da Tela -->
+                            <rect x="132" y="52" width="116" height="65" rx="12" fill="#EFF6FF"/>
+                            <circle cx="162" cy="84" r="16" fill="#0B5ED7"/>
+                            <path d="M155 84L160 89L170 79" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+                            <rect x="186" y="72" width="48" height="8" rx="4" fill="#0B5ED7"/>
+                            <rect x="186" y="86" width="36" height="6" rx="3" fill="#93C5FD"/>
+
+                            <!-- Gráfico dentro do celular -->
+                            <rect x="132" y="130" width="116" height="75" rx="12" fill="#0B5ED7"/>
+                            <path d="M146 185L172 165L196 173L232 145" stroke="#FACC15" stroke-width="4" stroke-linecap="round"/>
+                            <circle cx="232" cy="145" r="5" fill="#FFFFFF"/>
+
+                            <!-- Botão de Compra / Fechamento -->
+                            <rect x="132" y="220" width="116" height="36" rx="18" fill="#FACC15"/>
+                            <text x="190" y="243" text-anchor="middle" fill="#003580" font-family="Poppins, sans-serif" font-weight="800" font-size="12">VENDA CONCLUÍDA</text>
+
+                            <!-- Ícones Satélites Flutuantes -->
+                            <circle cx="58" cy="95" r="34" fill="#0B5ED7" stroke="#FFFFFF" stroke-width="3"/>
+                            <text x="58" y="100" text-anchor="middle" fill="#FFFFFF" font-family="Poppins, sans-serif" font-weight="700" font-size="12">CRM</text>
+
+                            <circle cx="322" cy="115" r="34" fill="#0B5ED7" stroke="#FFFFFF" stroke-width="3"/>
+                            <text x="322" y="120" text-anchor="middle" fill="#FACC15" font-family="Poppins, sans-serif" font-weight="700" font-size="11">DIGITAL</text>
+
+                            <circle cx="62" cy="215" r="34" fill="#0B5ED7" stroke="#FFFFFF" stroke-width="3"/>
+                            <text x="62" y="220" text-anchor="middle" fill="#FFFFFF" font-family="Poppins, sans-serif" font-weight="700" font-size="11">METAS</text>
+
+                            <circle cx="318" cy="225" r="34" fill="#0B5ED7" stroke="#FFFFFF" stroke-width="3"/>
+                            <text x="318" y="230" text-anchor="middle" fill="#FFFFFF" font-family="Poppins, sans-serif" font-weight="700" font-size="11">CLIENTE</text>
+                        </svg>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 6. PERGUNTA 3: POR QUE ESSA PROFISSÃO É TÃO IMPORTANTE?               -->
+    <!-- ===================================================================== -->
+    <section id="importancia" class="py-20 lg:py-28 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center reveal">
+                
+                <!-- Ilustração Vetorial: O Motor da Economia (5 colunas) -->
+                <div class="lg:col-span-5">
+                    <div class="bg-blue-50 border-2 border-blue-100 rounded-3xl p-6 sm:p-8 shadow-lg">
+                        <svg viewBox="0 0 400 340" class="w-full h-auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Globo / Comunidade Conectada -->
+                            <circle cx="200" cy="160" r="115" fill="#FFFFFF" stroke="#0B5ED7" stroke-width="4" stroke-dasharray="10 8"/>
+                            <circle cx="200" cy="160" r="82" fill="#0B5ED7"/>
+                            
+                            <!-- Engrenagens e Conexões -->
+                            <path d="M155 160C155 135 175 115 200 115C225 115 245 135 245 160" stroke="#93C5FD" stroke-width="6" stroke-linecap="round"/>
+                            <path d="M165 182L190 157L208 172L238 140" stroke="#FACC15" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                            
+                            <!-- Nós de Conexão (Empresa -> Vendedor -> Cliente) -->
+                            <rect x="30" y="65" width="110" height="44" rx="12" fill="#003B8E"/>
+                            <text x="85" y="92" text-anchor="middle" fill="#FFFFFF" font-family="Poppins, sans-serif" font-weight="700" font-size="12">INDÚSTRIA</text>
+
+                            <rect x="260" y="65" width="110" height="44" rx="12" fill="#003B8E"/>
+                            <text x="315" y="92" text-anchor="middle" fill="#FFFFFF" font-family="Poppins, sans-serif" font-weight="700" font-size="12">COMÉRCIO</text>
+
+                            <rect x="115" y="265" width="170" height="50" rx="25" fill="#FACC15" stroke="#003B8E" stroke-width="3"/>
+                            <text x="200" y="295" text-anchor="middle" fill="#003580" font-family="Poppins, sans-serif" font-weight="800" font-size="13">MOTOR DA ECONOMIA</text>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Texto e Pilares de Importância (7 colunas) -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-leda-blue font-bold text-xs uppercase tracking-wider">
+                        <i class="fa-solid fa-earth-americas"></i>
+                        <span>03. Impacto Social e Econômico</span>
+                    </div>
+
+                    <h2 class="font-display text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+                        Por que a profissão de Técnico em Vendas é <span class="text-leda-blue">tão importante</span>?
+                    </h2>
+
+                    <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
+                        <strong>Nada acontece na economia até que alguém venda alguma coisa.</strong> Uma fábrica pode criar o melhor produto e um hospital pode ter a melhor tecnologia, mas é o profissional de vendas que faz essas soluções chegarem às pessoas!
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-blue-50/60 border border-blue-100">
+                            <div class="w-10 h-10 rounded-full bg-leda-blue text-white flex items-center justify-center shrink-0 font-display font-bold">1</div>
+                            <div>
+                                <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg">Gera Empregos e Movimenta a Cidade</h3>
+                                <p class="text-sm text-slate-600">Quando as vendas aumentam, o comércio local (como em Santa Helena - MA) cresce, contrata mais pessoas e desenvolve toda a região.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-blue-50/60 border border-blue-100">
+                            <div class="w-10 h-10 rounded-full bg-leda-blue text-white flex items-center justify-center shrink-0 font-display font-bold">2</div>
+                            <div>
+                                <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg">Conecta Necessidades a Soluções Reais</h3>
+                                <p class="text-sm text-slate-600">Um bom técnico não empurra produtos: ele escuta, orienta e ajuda famílias e empresas a tomarem decisões melhores.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4 p-4 rounded-2xl bg-blue-50/60 border border-blue-100">
+                            <div class="w-10 h-10 rounded-full bg-leda-blue text-white flex items-center justify-center shrink-0 font-display font-bold">3</div>
+                            <div>
+                                <h3 class="font-display font-bold text-slate-900 text-base sm:text-lg">Insubstituível pela Inteligência Artificial</h3>
+                                <p class="text-sm text-slate-600">Robôs automatizam planilhas, mas empatia, confiança, olho no olho e persuasão humana continuam sendo habilidades exclusivamente nossas.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 7. SEÇÃO EXTRA: ÁREAS DE ATUAÇÃO (ONDE VOCÊ PODE TRABALHAR)           -->
+    <!-- ===================================================================== -->
+    <section id="areas-atuacao" class="py-20 bg-leda-dark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-white/10 text-yellow-300 text-xs font-bold uppercase tracking-wider mb-3">
+                    04. Horizonte de Carreira
+                </span>
+                <h2 class="font-display text-3xl sm:text-4xl font-extrabold mb-4">
+                    Onde um Técnico em Vendas pode atuar?
+                </h2>
+                <p class="text-blue-200 text-base sm:text-lg">
+                    Um único diploma técnico abre portas em dezenas de setores diferentes. Veja alguns exemplos:
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="p-6 rounded-2xl bg-white/10 border border-white/15 hover:bg-white/15 transition-all">
+                    <i class="fa-solid fa-store text-3xl text-yellow-300 mb-4"></i>
+                    <h3 class="font-display font-bold text-xl mb-2">Varejo e Grandes Redes</h3>
+                    <p class="text-sm text-blue-100">Lojas de departamento, supermercados, moda, eletrônicos e liderança de equipes comerciais.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="p-6 rounded-2xl bg-white/10 border border-white/15 hover:bg-white/15 transition-all">
+                    <i class="fa-solid fa-cart-shopping text-3xl text-yellow-300 mb-4"></i>
+                    <h3 class="font-display font-bold text-xl mb-2">E-commerce e Marketing Digital</h3>
+                    <p class="text-sm text-blue-100">Gestão de marketplaces (Shopee, Mercado Livre), atendimento online e tráfego para vendas.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="p-6 rounded-2xl bg-white/10 border border-white/15 hover:bg-white/15 transition-all">
+                    <i class="fa-solid fa-building text-3xl text-yellow-300 mb-4"></i>
+                    <h3 class="font-display font-bold text-xl mb-2">Vendas B2B (Empresa para Empresa)</h3>
+                    <p class="text-sm text-blue-100">Representação comercial, distribuidoras, agronegócio e fornecimento corporativo de alto valor.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="p-6 rounded-2xl bg-white/10 border border-white/15 hover:bg-white/15 transition-all">
+                    <i class="fa-solid fa-house-chimney text-3xl text-yellow-300 mb-4"></i>
+                    <h3 class="font-display font-bold text-xl mb-2">Mercado Imobiliário e Automotivo</h3>
+                    <p class="text-sm text-blue-100">Concessionárias de veículos, consórcios, financiamentos e consultoria imobiliária.</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="p-6 rounded-2xl bg-white/10 border border-white/15 hover:bg-white/15 transition-all">
+                    <i class="fa-solid fa-microchip text-3xl text-yellow-300 mb-4"></i>
+                    <h3 class="font-display font-bold text-xl mb-2">Tecnologia e Startups (SDR / Closer)</h3>
+                    <p class="text-sm text-blue-100">Prospecção de clientes para empresas de software, telecomunicações e serviços financeiros.</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="p-6 rounded-2xl bg-white/10 border border-white/15 hover:bg-white/15 transition-all">
+                    <i class="fa-solid fa-lightbulb text-3xl text-yellow-300 mb-4"></i>
+                    <h3 class="font-display font-bold text-xl mb-2">Empreendedorismo Próprio</h3>
+                    <p class="text-sm text-blue-100">Abertura do próprio negócio físico ou digital com domínio total de precificação e clientes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 8. ATRAÇÃO INTERATIVA PARA A FEIRA: QUIZ DE PERFIL EM VENDAS          -->
+    <!-- ===================================================================== -->
+    <section id="quiz-vendas" class="py-20 lg:py-28 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 reveal">
+            <div class="bg-white rounded-3xl shadow-2xl border-2 border-blue-100 overflow-hidden">
+                
+                <!-- Topo do Quiz -->
+                <div class="bg-leda-blue px-6 py-8 sm:px-10 text-white text-center">
+                    <span class="inline-block px-3.5 py-1 rounded-full bg-white/15 text-yellow-300 text-xs font-bold uppercase tracking-wider mb-2">
+                        Interação Feira das Profissões
+                    </span>
+                    <h2 class="font-display text-2xl sm:text-3xl font-extrabold">
+                        Descubra seu Superpoder em Vendas!
+                    </h2>
+                    <p class="text-blue-100 text-sm sm:text-base mt-1">
+                        Responda 3 perguntas rápidas e veja qual seria o seu estilo como Técnico em Vendas.
+                    </p>
+                </div>
+
+                <!-- Corpo Dinâmico do Quiz -->
+                <div id="quiz-container" class="p-6 sm:p-10">
+                    <!-- Renderizado via JavaScript -->
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- 9. RODAPÉ OFICIAL DA ESCOLA                                           -->
+    <!-- ===================================================================== -->
+    <footer class="bg-slate-950 text-white pt-14 pb-10 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 pb-10 border-b border-slate-800">
+                
+                <!-- Identidade da Escola -->
+                <div class="flex items-center gap-4 text-center md:text-left flex-col sm:flex-row">
+                    <div class="w-16 h-16 rounded-full overflow-hidden border-2 border-leda-gold bg-[#0A66C2] shrink-0">
+                        <img src="image_60f8a9.png" 
+                             alt="Logo Centro Educa Mais Leda Tajra" 
+                             class="w-full h-full object-cover"
+                             onerror="this.src='https://placehold.co/150x150/0B5ED7/FFFFFF?text=LEDA+TAJRA'">
+                    </div>
+                    <div>
+                        <h3 class="font-display font-extrabold text-lg sm:text-xl text-white">
+                            CENTRO EDUCA MAIS LEDA TAJRA
+                        </h3>
+                        <p class="text-sm text-blue-300">
+                            Santa Helena - MA • Ensino Médio Integral e Profissionalizante
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Selo do Curso -->
+                <div class="text-center md:text-right">
+                    <span class="inline-block px-4 py-2 rounded-xl bg-leda-blue/20 border border-leda-blue/40 text-blue-300 text-sm font-semibold">
+                        Feira das Profissões • Curso Técnico em Vendas
+                    </span>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+                <p>© 2026 CENTRO EDUCA MAIS LEDA TAJRA — Todos os direitos reservados.</p>
+                <p>Desenvolvido para a apresentação da <strong>Feira das Profissões</strong>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===================================================================== -->
+    <!-- SCRIPTS INTERATIVOS (SPLASH SCREEN, ANIMAÇÕES E QUIZ)                 -->
+    <!-- ===================================================================== -->
+    <script>
+        // 1. Controle da Tela de Entrada (Splash Screen)
+        const splashScreen = document.getElementById('splash-screen');
+        const splashProgress = document.getElementById('splash-progress');
+
+        window.addEventListener('load', () => {
+            // Avança a barra de progresso visualmente
+            setTimeout(() => {
+                if (splashProgress) splashProgress.style.width = '100%';
+            }, 150);
+
+            // Fecha automaticamente após 2.4 segundos (ou antes se o usuário clicar no botão)
+            setTimeout(() => {
+                closeSplash();
+            }, 2400);
+        });
+
+        function closeSplash() {
+            if (splashScreen && !splashScreen.classList.contains('hidden-splash')) {
+                splashScreen.classList.add('hidden-splash');
+            }
+        }
+
+        // 2. Menu Mobile Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fecha o menu mobile ao clicar em qualquer link
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 3. Animação de Revelação Suave no Scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.12 });
+
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // 4. Quiz Interativo para Visitantes da Feira das Profissões
+        const quizQuestions = [
+            {
+                question: "1. Quando um amigo pede ajuda para escolher algo importante, o que você faz?",
+                options: [
+                    { text: "Faço perguntas para entender exatamente o que ele precisa e dou a melhor dica.", type: "comunicador" },
+                    { text: "Pesquiso na internet os melhores preços, avaliações e comparações.", type: "digital" },
+                    { text: "Consigo convencer o vendedor a dar um desconto ou condição especial!", type: "negociador" }
+                ]
+            },
+            {
+                question: "2. Qual ferramenta mais chama sua atenção no dia a dia?",
+                options: [
+                    { text: "Redes sociais, vídeos curtos e criação de conteúdo criativo.", type: "digital" },
+                    { text: "Conversar cara a cara, liderar trabalhos em grupo e apresentar ideias.", type: "comunicador" },
+                    { text: "Planilhas, metas, desafios e estratégias para bater recordes.", type: "negociador" }
+                ]
+            },
+            {
+                question: "3. O que mais motiva você em uma profissão?",
+                options: [
+                    { text: "Ganhar comissões altas e crescer rápido pelo meu próprio esforço.", type: "negociador" },
+                    { text: "Trabalhar com tecnologia, inovação e vendas online.", type: "digital" },
+                    { text: "Conhecer pessoas novas e ajudar clientes a realizarem sonhos.", type: "comunicador" }
+                ]
+            }
+        ];
+
+        const quizProfiles = {
+            comunicador: {
+                title: "Consultor & Comunicador Nato",
+                icon: "fa-comments",
+                badge: "Empatia + Persuasão",
+                description: "Você tem o dom de ouvir, criar conexão imediata e transmitir confiança! No curso Técnico em Vendas, você vai transformar sua simpatia e comunicação em uma carreira de muito sucesso."
+            },
+            digital: {
+                title: "Estrategista de Vendas Digitais",
+                icon: "fa-mobile-screen-button",
+                badge: "Inovação + E-commerce",
+                description: "Você enxerga oportunidades onde todo mundo só vê redes sociais! Com o Técnico em Vendas, você vai dominar e-commerce, marketing digital e vendas online."
+            },
+            negociador: {
+                title: "Negociador Mestre de Alta Performance",
+                icon: "fa-trophy",
+                badge: "Foco + Resultados",
+                description: "Você gosta de desafios, metas e de fechar grandes acordos! O curso Técnico em Vendas vai te dar as técnicas profissionais para se destacar e conquistar excelentes ganhos."
+            }
+        };
+
+        let currentStep = 0;
+        let scores = { comunicador: 0, digital: 0, negociador: 0 };
+        const quizContainer = document.getElementById('quiz-container');
+
+        function renderQuiz() {
+            if (currentStep < quizQuestions.length) {
+                const q = quizQuestions[currentStep];
+                quizContainer.innerHTML = `
+                    <div class="mb-6 flex items-center justify-between text-xs font-bold text-leda-blue uppercase tracking-wider">
+                        <span>Pergunta ${currentStep + 1} de ${quizQuestions.length}</span>
+                        <span>${Math.round(((currentStep) / quizQuestions.length) * 100)}% concluído</span>
+                    </div>
+                    <div class="w-full h-2 bg-blue-100 rounded-full mb-6 overflow-hidden">
+                        <div class="h-full bg-leda-blue transition-all duration-300" style="width: ${((currentStep + 1) / quizQuestions.length) * 100}%"></div>
+                    </div>
+                    <h3 class="font-display text-xl sm:text-2xl font-bold text-slate-900 mb-6">${q.question}</h3>
+                    <div class="space-y-3.5">
+                        ${q.options.map((opt) => `
+                            <button onclick="selectAnswer('${opt.type}')" 
+                                class="w-full text-left p-4 sm:p-5 rounded-2xl border-2 border-blue-100 hover:border-leda-blue hover:bg-blue-50/70 transition-all flex items-center justify-between gap-4 group cursor-pointer">
+                                <span class="text-sm sm:text-base font-medium text-slate-800 group-hover:text-leda-dark">${opt.text}</span>
+                                <span class="w-8 h-8 rounded-full bg-blue-100 text-leda-blue group-hover:bg-leda-blue group-hover:text-white flex items-center justify-center shrink-0 transition-colors">
+                                    <i class="fa-solid fa-arrow-right text-xs"></i>
+                                </span>
+                            </button>
+                        `).join('')}
+                    </div>
+                `;
+            } else {
+                // Calcula perfil vencedor
+                const winnerKey = Object.keys(scores).reduce((a, b) => scores[a] >= scores[b] ? a : b);
+                const profile = quizProfiles[winnerKey];
+
+                quizContainer.innerHTML = `
+                    <div class="text-center py-4 space-y-5">
+                        <div class="w-20 h-20 rounded-full bg-blue-100 text-leda-blue flex items-center justify-center mx-auto text-3xl shadow-inner">
+                            <i class="fa-solid ${profile.icon}"></i>
+                        </div>
+                        <span class="inline-block px-4 py-1 rounded-full bg-yellow-100 text-amber-800 text-xs font-bold uppercase tracking-wider">
+                            ${profile.badge}
+                        </span>
+                        <h3 class="font-display text-2xl sm:text-3xl font-extrabold text-slate-900">
+                            ${profile.title}
+                        </h3>
+                        <p class="text-slate-600 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+                            ${profile.description}
+                        </p>
+                        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+                            <button onclick="restartQuiz()" class="px-6 py-3 rounded-xl bg-leda-blue text-white font-display font-bold text-sm hover:bg-leda-dark transition-all cursor-pointer flex items-center gap-2">
+                                <i class="fa-solid fa-rotate-right"></i>
+                                <span>Refazer Teste</span>
+                            </button>
+                            <a href="#inicio" class="px-6 py-3 rounded-xl bg-slate-100 text-slate-700 font-display font-bold text-sm hover:bg-slate-200 transition-all">
+                                Voltar ao Topo
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }
+        }
+
+        function selectAnswer(type) {
+            scores[type]++;
+            currentStep++;
+            renderQuiz();
+        }
+
+        function restartQuiz() {
+            currentStep = 0;
+            scores = { comunicador: 0, digital: 0, negociador: 0 };
+            renderQuiz();
+        }
+
+        // Inicializa o Quiz
+        renderQuiz();
+    </script>
+</body>
+</html>
